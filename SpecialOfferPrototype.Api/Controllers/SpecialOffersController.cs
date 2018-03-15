@@ -23,7 +23,7 @@ namespace SpecialOfferPrototype.Api.Controllers
         /// </summary>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <param name="filter">The filter.</param>
-        /// <param name="pageIndex">Index of the page.</param>
+        /// <param name="page">Index of the page.</param>
         /// <param name="pageSize">Size of the page.</param>
         /// <returns></returns>
         [HttpGet]
@@ -32,16 +32,16 @@ namespace SpecialOfferPrototype.Api.Controllers
         [ProducesResponseType(typeof(SpecialOfferListRepresentation), 200)]
         public Task<IActionResult> GetSpecialOffersAsync(
             CancellationToken cancellationToken,
-            [FromQuery(Name = "q")] string filter = null,
-            [FromQuery(Name = "pi")] int pageIndex = 1,
-            [FromQuery(Name = "ps")] int pageSize = 10)
+            [FromQuery] string filter = null,
+            [FromQuery] int page = 1,
+            [FromQuery] int pageSize = 10)
         {
             return GetSpecialOffersAsync(
                 cancellationToken,
                 null,
                 null,
                 filter,
-                pageIndex,
+                page,
                 pageSize);
         }
 
@@ -51,7 +51,7 @@ namespace SpecialOfferPrototype.Api.Controllers
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <param name="categoryId">The category identifier.</param>
         /// <param name="filter">The filter.</param>
-        /// <param name="pageIndex">Index of the page.</param>
+        /// <param name="page">Index of the page.</param>
         /// <param name="pageSize">Size of the page.</param>
         /// <returns></returns>
         [HttpGet]
@@ -61,16 +61,16 @@ namespace SpecialOfferPrototype.Api.Controllers
         public Task<IActionResult> GetSpecialOffersAsync(
             CancellationToken cancellationToken,
             [FromRoute] string categoryId,
-            [FromQuery(Name = "q")] string filter = null,
-            [FromQuery(Name = "pi")] int pageIndex = 1,
-            [FromQuery(Name = "ps")] int pageSize = 10)
+            [FromQuery] string filter = null,
+            [FromQuery] int page = 1,
+            [FromQuery] int pageSize = 10)
         {
             return GetSpecialOffersAsync(
                 cancellationToken,
                 categoryId,
                 null,
                 filter,
-                pageIndex,
+                page,
                 pageSize);
         }
 
@@ -81,7 +81,7 @@ namespace SpecialOfferPrototype.Api.Controllers
         /// <param name="categoryId">The category identifier.</param>
         /// <param name="countyId">The county identifier.</param>
         /// <param name="filter">The filter.</param>
-        /// <param name="pageIndex">Index of the page.</param>
+        /// <param name="page">Index of the page.</param>
         /// <param name="pageSize">Size of the page.</param>
         /// <returns></returns>
         [HttpGet]
@@ -92,17 +92,17 @@ namespace SpecialOfferPrototype.Api.Controllers
             CancellationToken cancellationToken,
             [FromRoute] string categoryId,
             [FromRoute] string countyId,
-            [FromQuery(Name = "q")] string filter = null,
-            [FromQuery(Name = "pi")] int pageIndex = 1,
-            [FromQuery(Name = "ps")] int pageSize = 10)
+            [FromQuery] string filter = null,
+            [FromQuery] int page = 1,
+            [FromQuery] int pageSize = 10)
         {
-            if (pageIndex < 1 || pageSize < 1)
+            if (page < 1 || pageSize < 1)
             {
                 return BadRequest();
             }
 
             var results = await _specialOffersRepository
-                .GetSpecialOffersAsync(categoryId, countyId, filter, pageIndex - 1, pageSize, cancellationToken)
+                .GetSpecialOffersAsync(categoryId, countyId, filter, page - 1, pageSize, cancellationToken)
                 .ConfigureAwait(true);
 
             var pagedItems = results
@@ -134,7 +134,7 @@ namespace SpecialOfferPrototype.Api.Controllers
                     filter,
                     results.Total,
                     totalPages,
-                    pageIndex,
+                    page,
                     pageSize,
                     categoryId,
                     countyId);

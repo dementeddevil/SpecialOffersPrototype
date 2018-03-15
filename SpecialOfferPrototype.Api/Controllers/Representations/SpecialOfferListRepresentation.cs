@@ -34,9 +34,9 @@ namespace SpecialOfferPrototype.Api.Controllers.Representations
                 GetParentLinkTemplate(categoryId, countyId),
                 new
                 {
-                    q = queryTerm,
-                    pi = pageIndex,
-                    ps = pageSize,
+                    term = queryTerm,
+                    page = pageIndex,
+                    pageSize,
                     countyId,
                     categoryId
                 })

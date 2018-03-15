@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 using SpecialOfferPrototype.Api.Infrastructure;
 using Swashbuckle.AspNetCore.Swagger;
 
@@ -38,6 +39,7 @@ namespace SpecialOfferPrototype.Api
             services.Configure<MvcJsonOptions>(options =>
             {
                 options.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Serialize;
             });
 
             services.TryAddEnumerable(

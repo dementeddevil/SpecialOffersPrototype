@@ -25,6 +25,7 @@ namespace SpecialOfferPrototype.Api.Controllers.Representations
         {
             // TODO: If special offers can have related items then add links to those things here
             //  for example we could add links to allow search by category and/or county...
+            Links.Add(new Link { Rel = "self" });
         }
     }
 }

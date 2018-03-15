@@ -41,7 +41,7 @@ namespace WebApi.Hal.JsonConverters
             var resource = (IResource)value;
 			var linksBackup = resource.Links;
 
-            if (linksBackup.Count == 0)
+            if (linksBackup?.Count == 0)
                 resource.Links = null; // avoid serialization
 
             var saveContext = serializer.Context;
@@ -51,7 +51,7 @@ namespace WebApi.Hal.JsonConverters
             serializer.Converters.Add(this);
             serializer.Context = saveContext;
 
-            if (linksBackup.Count == 0)
+            if (linksBackup?.Count == 0)
 				resource.Links = linksBackup;
 		}
 
