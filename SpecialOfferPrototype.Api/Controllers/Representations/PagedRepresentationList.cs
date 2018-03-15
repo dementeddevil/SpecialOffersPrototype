@@ -65,18 +65,18 @@ namespace SpecialOfferPrototype.Api.Controllers.Representations
 
         private object[] BuildTemplateParameters(int pageIndex)
         {
-            var prms =
-                new List<object>
-                {
-                    new
-                    {
-                        page = pageIndex
-                    }
-                };
+            var prms = new List<object>();
+
             if (UriTemplateSubstitutionParams != null)
             {
                 prms.AddRange(UriTemplateSubstitutionParams);
             }
+
+            prms.Add(
+                new
+                {
+                    page = pageIndex
+                });
 
             return prms.ToArray();
         }
