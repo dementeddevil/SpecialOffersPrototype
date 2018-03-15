@@ -13,11 +13,8 @@ namespace SpecialOfferPrototype.Api
             public static Link CategorySpecialOffers => new Link("special-offers", "~/special-offers/category/{categoryId}/{?filter,page,pageSize}");
 
             public static Link CategoryCountySpecialOffers => new Link("special-offers", "~/special-offers/category/{categoryId}/county/{countyId}/{?filter,page,pageSize}");
-        }
 
-        public class SpecialOffer
-        {
-            public static Link GetSpecialOffer => new Link("special-offer", "~/special-offer/{?id}");
+            public static Link SpecialOffer => new Link("special-offer", "~/special-offers/{id}");
         }
     }
 }

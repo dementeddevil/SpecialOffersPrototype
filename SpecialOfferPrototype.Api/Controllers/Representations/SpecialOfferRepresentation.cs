@@ -21,6 +21,18 @@ namespace SpecialOfferPrototype.Api.Controllers.Representations
 
         public DateTimeOffset ValidUntil { get; set; }
 
+        public override string Rel
+        {
+            get => LinkTemplates.SpecialOffers.SpecialOffer.Rel;
+            set { }
+        }
+
+        public override string Href
+        {
+            get => LinkTemplates.SpecialOffers.SpecialOffer.CreateLink(new { id = Id }).Href;
+            set { }
+        }
+
         protected override void CreateHypermedia()
         {
             // TODO: If special offers can have related items then add links to those things here
