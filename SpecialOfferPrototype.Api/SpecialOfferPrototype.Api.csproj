@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
     <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
     <IsPackable>false</IsPackable>
@@ -33,7 +33,25 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\boot.tsx" />
+    <None Remove="ClientApp\components\Home.tsx" />
+    <None Remove="ClientApp\components\Layout.tsx" />
+    <None Remove="ClientApp\components\NavMenu.tsx" />
+    <None Remove="ClientApp\components\SpecialOffers.tsx" />
+    <None Remove="ClientApp\routes.tsx" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\WebApi.Hal\WebApi.Hal.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\boot.tsx" />
+    <TypeScriptCompile Include="ClientApp\components\Home.tsx" />
+    <TypeScriptCompile Include="ClientApp\components\Layout.tsx" />
+    <TypeScriptCompile Include="ClientApp\components\NavMenu.tsx" />
+    <TypeScriptCompile Include="ClientApp\components\SpecialOffers.tsx" />
+    <TypeScriptCompile Include="ClientApp\routes.tsx" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">

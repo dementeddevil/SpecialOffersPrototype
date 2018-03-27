@@ -8,7 +8,7 @@ using SpecialOfferPrototype.Api.Infrastructure;
 namespace SpecialOfferPrototype.Api.Controllers
 {
     [Produces("application/json")]
-    [Route("api/SpecialOffers")]
+    [Route("api/special-offers")]
     public class SpecialOffersController : Controller
     {
         private readonly ISpecialOffersRepository _specialOffersRepository;
@@ -27,7 +27,7 @@ namespace SpecialOfferPrototype.Api.Controllers
         /// <param name="pageSize">Size of the page.</param>
         /// <returns></returns>
         [HttpGet]
-        [Route("special-offers")]
+        [Route("")]
         [Produces("application/hal+json", "application/json", Type = typeof(SpecialOfferListRepresentation))]
         [ProducesResponseType(typeof(SpecialOfferListRepresentation), 200)]
         public Task<IActionResult> GetSpecialOffersAsync(
@@ -55,7 +55,7 @@ namespace SpecialOfferPrototype.Api.Controllers
         /// <param name="pageSize">Size of the page.</param>
         /// <returns></returns>
         [HttpGet]
-        [Route("special-offers/category/{categoryId}")]
+        [Route("category/{categoryId}")]
         [Produces("application/hal+json", "application/json", Type = typeof(SpecialOfferListRepresentation))]
         [ProducesResponseType(typeof(SpecialOfferListRepresentation), 200)]
         public Task<IActionResult> GetSpecialOffersAsync(
@@ -85,7 +85,7 @@ namespace SpecialOfferPrototype.Api.Controllers
         /// <param name="pageSize">Size of the page.</param>
         /// <returns></returns>
         [HttpGet]
-        [Route("special-offers/category/{categoryId}/county/{countyId}")]
+        [Route("category/{categoryId}/county/{countyId}")]
         [Produces("application/hal+json", "application/json", Type = typeof(SpecialOfferListRepresentation))]
         [ProducesResponseType(typeof(SpecialOfferListRepresentation), 200)]
         public async Task<IActionResult> GetSpecialOffersAsync(
