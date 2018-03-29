@@ -4,32 +4,29 @@ import { Link, NavLink } from 'react-router-dom';
 export class NavMenu extends React.Component<{}, {}> {
     public render() {
         return <div className='main-nav'>
-                <div className='navbar navbar-inverse'>
+            <nav className='navbar navbar-dark bg-dark'>
                 <div className='navbar-header'>
-                    <button type='button' className='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'>
-                        <span className='sr-only'>Toggle navigation</span>
-                        <span className='icon-bar'></span>
-                        <span className='icon-bar'></span>
-                        <span className='icon-bar'></span>
+                    <button type='button' className='navbar-toggler' data-toggle='collapse' data-target='.navbar-collapse' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
+                        <span className="navbar-toggler-icon"></span>
                     </button>
-                    <Link className='navbar-brand' to={ '/' }>Special Offers Prototype</Link>
+                    <Link className='navbar-brand' to={'/'}>Special Offers Prototype</Link>
                 </div>
                 <div className='clearfix'></div>
                 <div className='navbar-collapse collapse'>
-                    <ul className='nav navbar-nav'>
-                        <li>
-                            <NavLink to={ '/' } exact activeClassName='active'>
+                    <ul className='navbar-nav mr-auto'>
+                        <li className="nav-item">
+                            <NavLink to={'/'} exact activeClassName='active'>
                                 <span className='glyphicon glyphicon-home'></span> Home
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to={ '/special-offers' } activeClassName='active'>
+                            <NavLink to={'/special-offers'} activeClassName='active'>
                                 <span className='glyphicon glyphicon-education'></span> Special Offers
                             </NavLink>
                         </li>
                     </ul>
                 </div>
-            </div>
+            </nav>
         </div>;
     }
 }
