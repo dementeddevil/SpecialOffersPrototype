@@ -135,19 +135,29 @@ export class SpecialOffers extends React.Component<RouteComponentProps<{}>, ISpe
     }
 
     public render() {
-        let contents = this.context.Provider.state.loading
-            ? <p><em>Loading...</em></p>
-            : SpecialOffers.renderOffersTable(this.context.Provider.state.offers);
+        let contents = <p><em>Loading...</em></p>;
+
+        //this.context.Provider.state.loading
+        //    ? <p><em>Loading...</em></p>
+        //    : SpecialOffers.renderOffersTable(this.context.Provider.state.offers);
 
         return (
-            <SpecialOfferContext.Provider>
-                <div>
-                    <h1>Special Offers</h1>
-                    <p>Take a look at our current special offers.</p>
-                    {contents}
-                </div>
-            </SpecialOfferContext.Provider>
-        )
+            <SpecialOfferContext.Consumer>
+                {(context: any) => {
+                        console.log(`context: ${context}`);
+                    context.Provider.fetchOffers(null, 1, 10);
+
+                    return (
+                        <div>
+                            <h1>Special Offers</h1>
+                            <p>Take} a look at our current special offers.</p>
+                            {context.state.name}
+                        </div>
+                    );
+                }
+                }
+            </SpecialOfferContext.Consumer>
+        );
     }
 
     private static renderOffersTable(offers: ISpecialOffer[]) {
