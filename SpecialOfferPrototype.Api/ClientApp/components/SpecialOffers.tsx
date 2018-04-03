@@ -5,9 +5,12 @@ import 'halson';
 
 const SpecialOfferContext = React.createContext();
 
-class SpecialOfferProvider extends React.Component<RouteComponentProps<{}>, ISpecialOfferState> {
-    constructor(props: RouteComponentProps<{}>, context?: any) {
+class SpecialOfferProvider extends React.Component<{}, ISpecialOfferState> {
+    constructor(props: {}, context?: any) {
         super(props, context);
+
+        console.log('SpecialOfferProvider -> ctor');
+
         this.state = {
             offers: [],
             totalResults: 0,
@@ -31,13 +34,31 @@ class SpecialOfferProvider extends React.Component<RouteComponentProps<{}>, ISpe
                 this.fetchViaPageUrl(this.state.lastPageUrl);
             }
         }
+
+        this.fetchOffers(null, null, null, 1, 10);
     }
 
-    fetchOffers(filter: string | null, pageIndex: number, pageSize: number) {
-        var uri = `api/special-offers?pageIndex=${pageIndex}&pageSize=${pageSize}`;
+    fetchOffers(
+        filter: string | null,
+        categoryId: string | null,
+        locationId: string | null,
+        pageIndex: number,
+        pageSize: number) {
+
+        var uri = 'api/special-offers';
+
+        if (categoryId !== null && categoryId.length > 0) {
+            uri += `/category/${categoryId}`;
+
+            if (locationId !== null && locationId.length > 0) {
+                uri += `/location/${locationId}`;
+            }
+        }
+
+        uri += `?pageIndex=${pageIndex}&pageSize=${pageSize}`;
 
         if (filter !== null && filter.length > 0) {
-            uri += '&filter=' + filter;
+            uri += `&filter=${filter}`;
         }
 
         this.fetchViaPageUrl(uri);
@@ -74,10 +95,12 @@ class SpecialOfferProvider extends React.Component<RouteComponentProps<{}>, ISpe
 
     render() {
         return (
-            <SpecialOfferContext.Provider value={this.state}>
+            <SpecialOfferContext.Provider value={{
+                state: this.state
+            }}>
                 {this.props.children}
             </SpecialOfferContext.Provider>
-        )
+        );
     }
 }
 
@@ -127,27 +150,30 @@ interface ISpecialOffer {
     validUntil: Date;
 }
 
-export class SpecialOffers extends React.Component<RouteComponentProps<{}>, ISpecialOfferState> {
-    constructor(props: RouteComponentProps<{}>, context?: any) {
+export class SpecialOffers extends React.Component<RouteComponentProps<any>> {
+    constructor(props: RouteComponentProps<any>, context?: any) {
         super(props, context);
 
         //this.fetchOffers(null, 1, 10);
     }
 
     public render() {
-        let contents = this.context.Provider.state.loading
-            ? <p><em>Loading...</em></p>
-            : SpecialOffers.renderOffersTable(this.context.Provider.state.offers);
-
         return (
-            <SpecialOfferContext.Provider>
-                <div>
-                    <h1>Special Offers</h1>
-                    <p>Take a look at our current special offers.</p>
-                    {contents}
-                </div>
-            </SpecialOfferContext.Provider>
-        )
+            <SpecialOfferContext.Consumer>
+                {(context: any) => (
+                    //{
+                    //    let contents = context.loading
+                    //        ? <p><em>Loading...</em></p>
+                    //        : SpecialOffers.renderOffersTable(context.offers);
+                    //}
+                    <div>
+                        <h1>Special Offers</h1>
+                        <p>Take a look at our current special offers.</p>
+                        {context}
+                    </div>
+                )}
+            </SpecialOfferContext.Consumer>
+        );
     }
 
     private static renderOffersTable(offers: ISpecialOffer[]) {
@@ -164,6 +190,4 @@ export class SpecialOffers extends React.Component<RouteComponentProps<{}>, ISpe
             )}
         </div>;
     }
-
-    private _isMounted: boolean = false;
 }

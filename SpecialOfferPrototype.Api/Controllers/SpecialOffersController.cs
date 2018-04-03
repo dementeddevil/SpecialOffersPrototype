@@ -79,19 +79,19 @@ namespace SpecialOfferPrototype.Api.Controllers
         /// </summary>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <param name="categoryId">The category identifier.</param>
-        /// <param name="countyId">The county identifier.</param>
+        /// <param name="locationId">The location identifier.</param>
         /// <param name="filter">The filter.</param>
         /// <param name="page">Index of the page.</param>
         /// <param name="pageSize">Size of the page.</param>
         /// <returns></returns>
         [HttpGet]
-        [Route("category/{categoryId}/county/{countyId}")]
+        [Route("category/{categoryId}/location/{locationId}")]
         [Produces("application/hal+json", "application/json", Type = typeof(SpecialOfferListRepresentation))]
         [ProducesResponseType(typeof(SpecialOfferListRepresentation), 200)]
         public async Task<IActionResult> GetSpecialOffersAsync(
             CancellationToken cancellationToken,
             [FromRoute] string categoryId,
-            [FromRoute] string countyId,
+            [FromRoute] string locationId,
             [FromQuery] string filter = null,
             [FromQuery] int page = 1,
             [FromQuery] int pageSize = 10)
@@ -102,7 +102,7 @@ namespace SpecialOfferPrototype.Api.Controllers
             }
 
             var results = await _specialOffersRepository
-                .GetSpecialOffersAsync(categoryId, countyId, filter, page - 1, pageSize, cancellationToken)
+                .GetSpecialOffersAsync(categoryId, locationId, filter, page - 1, pageSize, cancellationToken)
                 .ConfigureAwait(true);
 
             var pagedItems = results
@@ -137,7 +137,7 @@ namespace SpecialOfferPrototype.Api.Controllers
                     page,
                     pageSize,
                     categoryId,
-                    countyId);
+                    locationId);
 
             return Ok(result);
         }

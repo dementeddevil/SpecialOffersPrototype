@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import * as FontAwesome from 'react-fontawesome';
 
 export class NavMenu extends React.Component<{}, {}> {
     public render() {
         return <div className='main-nav'>
-            <nav className='navbar navbar-dark bg-dark'>
+            <nav className='navbar navbar-expand-sm navbar-dark bg-dark'>
                 <div className='navbar-header'>
                     <button type='button' className='navbar-toggler' data-toggle='collapse' data-target='.navbar-collapse' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
                         <span className="navbar-toggler-icon"></span>
@@ -14,16 +15,12 @@ export class NavMenu extends React.Component<{}, {}> {
                 <div className='clearfix'></div>
                 <div className='navbar-collapse collapse'>
                     <ul className='navbar-nav mr-auto'>
-                        <li className="nav-item">
-                            <NavLink to={'/'} exact activeClassName='active'>
-                                <span className='glyphicon glyphicon-home'></span> Home
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink to={'/special-offers'} activeClassName='active'>
-                                <span className='glyphicon glyphicon-education'></span> Special Offers
-                            </NavLink>
-                        </li>
+                        <NavLink to={'/'} exact className="nav-item nav-link" activeClassName='active'>
+                            <FontAwesome name='home' /> Home
+                        </NavLink>
+                        <NavLink to={'/special-offers'} className="nav-item nav-link" activeClassName='active'>
+                            <FontAwesome name='magic' /> Special Offers
+                        </NavLink>
                     </ul>
                 </div>
             </nav>
