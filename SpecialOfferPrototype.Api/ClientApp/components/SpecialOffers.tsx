@@ -158,20 +158,27 @@ export class SpecialOffers extends React.Component<RouteComponentProps<any>> {
     }
 
     public render() {
+        let contents = <p><em>Loading...</em></p>;
+
+        //this.context.Provider.state.loading
+        //    ? <p><em>Loading...</em></p>
+        //    : SpecialOffers.renderOffersTable(this.context.Provider.state.offers);
+
         return (
             <SpecialOfferContext.Consumer>
-                {(context: any) => (
-                    //{
-                    //    let contents = context.loading
-                    //        ? <p><em>Loading...</em></p>
-                    //        : SpecialOffers.renderOffersTable(context.offers);
-                    //}
-                    <div>
-                        <h1>Special Offers</h1>
-                        <p>Take a look at our current special offers.</p>
-                        {context}
-                    </div>
-                )}
+                {(context: any) => {
+                        console.log(`context: ${context}`);
+                    context.Provider.fetchOffers(null, 1, 10);
+
+                    return (
+                        <div>
+                            <h1>Special Offers</h1>
+                            <p>Take} a look at our current special offers.</p>
+                            {context.state.name}
+                        </div>
+                    );
+                }
+                }
             </SpecialOfferContext.Consumer>
         );
     }
