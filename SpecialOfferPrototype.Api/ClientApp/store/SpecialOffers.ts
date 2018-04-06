@@ -208,7 +208,7 @@ export const actionCreators = {
 
 const unloadedState: SpecialOffersState = {
     isLoading: false,
-    pageSize: 10,
+    pageSize: 0,
     pageUrl: null,
     filter: null,
     categoryId: null,

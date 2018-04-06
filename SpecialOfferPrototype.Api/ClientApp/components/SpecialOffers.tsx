@@ -16,8 +16,8 @@ class SpecialOffersFetchData extends React.Component<SpecialOffersProps, {}> {
         this.props.requestSpecialOffers(
             10,
             null,
-            this.props.match.params.categoryId,
-            this.props.match.params.locationId);
+            (typeof this.props.match.params.categoryId === 'undefined') ? null : this.props.match.params.categoryId,
+            (typeof this.props.match.params.locationId === 'undefined') ? null : this.props.match.params.locationId);
     }
 
     componentWillReceiveProps(nextProps: SpecialOffersProps) {
@@ -25,8 +25,8 @@ class SpecialOffersFetchData extends React.Component<SpecialOffersProps, {}> {
         this.props.requestSpecialOffers(
             10,
             null,
-            this.props.match.params.categoryId,
-            this.props.match.params.locationId);
+            (typeof this.props.match.params.categoryId === 'undefined') ? null : this.props.match.params.categoryId,
+            (typeof this.props.match.params.locationId === 'undefined') ? null : this.props.match.params.locationId);
     }
 
     public render() {
