@@ -33,12 +33,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="ClientApp\boot.tsx" />
+    <None Remove="ClientApp\boot-client.tsx" />
+    <None Remove="ClientApp\boot-server.tsx" />
     <None Remove="ClientApp\components\Home.tsx" />
     <None Remove="ClientApp\components\Layout.tsx" />
     <None Remove="ClientApp\components\NavMenu.tsx" />
     <None Remove="ClientApp\components\SpecialOffers.tsx" />
+    <None Remove="ClientApp\configureStore.ts" />
     <None Remove="ClientApp\routes.tsx" />
+    <None Remove="ClientApp\store\index.ts" />
+    <None Remove="ClientApp\store\SpecialOffers.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -46,12 +50,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\boot.tsx" />
+    <TypeScriptCompile Include="ClientApp\boot-client.tsx" />
+    <TypeScriptCompile Include="ClientApp\boot-server.tsx" />
     <TypeScriptCompile Include="ClientApp\components\Home.tsx" />
     <TypeScriptCompile Include="ClientApp\components\Layout.tsx" />
     <TypeScriptCompile Include="ClientApp\components\NavMenu.tsx" />
     <TypeScriptCompile Include="ClientApp\components\SpecialOffers.tsx" />
+    <TypeScriptCompile Include="ClientApp\configureStore.ts" />
     <TypeScriptCompile Include="ClientApp\routes.tsx" />
+    <TypeScriptCompile Include="ClientApp\store\index.ts" />
+    <TypeScriptCompile Include="ClientApp\store\SpecialOffers.ts" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">

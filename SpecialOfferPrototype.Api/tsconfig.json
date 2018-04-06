@@ -5,10 +5,12 @@
     "moduleResolution": "node",
     "target": "es5",
     "jsx": "react",
+    "experimentalDecorators": true,
     "sourceMap": true,
     "skipDefaultLibCheck": true,
     "strict": true,
-    "types": ["webpack-env"]
+    "lib": [ "es6", "dom" ],
+    "types": [ "webpack-env" ]
   },
   "exclude": [
       "bin",
