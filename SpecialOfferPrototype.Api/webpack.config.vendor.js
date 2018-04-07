@@ -29,20 +29,19 @@ module.exports = (env) => {
                 'redux',
                 'redux-thunk',
                 'react-router-redux',
-                'jquery'
-            ],
+                'jquery',
+                'styled-components'
+            ]
         },
         output: {
             publicPath: 'dist/',
             filename: '[name].js',
-            library: '[name]_[hash]',
+            library: '[name]_[hash]'
         },
         plugins: [
             new webpack.ProvidePlugin({ $: 'jquery', jQuery: 'jquery' }), // Maps these identifiers to the jQuery package (because Bootstrap expects it to be a global variable)
             new webpack.NormalModuleReplacementPlugin(/\/iconv-loader$/, require.resolve('node-noop')), // Workaround for https://github.com/andris9/encoding/issues/16
-            new webpack.DefinePlugin({
-                'process.env.NODE_ENV': isDevBuild ? '"development"' : '"production"'
-            })
+            new webpack.DefinePlugin({ 'process.env.NODE_ENV': isDevBuild ? '"development"' : '"production"' })
         ]
     };
 
@@ -69,7 +68,7 @@ module.exports = (env) => {
         resolve: { mainFields: ['main'] },
         output: {
             path: path.join(__dirname, 'ClientApp', 'dist'),
-            libraryTarget: 'commonjs2',
+            libraryTarget: 'commonjs2'
         },
         module: {
             rules: [{ test: /\.css(\?|$)/, use: isDevBuild ? 'css-loader' : 'css-loader?minimize' }]

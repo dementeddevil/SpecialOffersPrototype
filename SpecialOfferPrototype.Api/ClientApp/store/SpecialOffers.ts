@@ -171,7 +171,7 @@ export const actionCreators = {
                 });
             }
         },
-    requestSpecialOfferPage: (pageUri: string): AppThunkAction<KnownAction> =>
+    requestSpecialOfferPage: (pageUri: string | null): AppThunkAction<KnownAction> =>
         (dispatch, getState) => {
             // Only load data if page URI is both valid and different from current
             if (pageUri !== null &&
