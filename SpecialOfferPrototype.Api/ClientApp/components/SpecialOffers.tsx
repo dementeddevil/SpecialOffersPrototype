@@ -3,6 +3,7 @@ import { Link, RouteComponentProps } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { ApplicationState } from '../store';
 import * as SpecialOffersState from '../store/SpecialOffers';
+import './SpecialOfferStyling.scss';
 
 // At runtime, Redux will merge together...
 type SpecialOffersProps =
