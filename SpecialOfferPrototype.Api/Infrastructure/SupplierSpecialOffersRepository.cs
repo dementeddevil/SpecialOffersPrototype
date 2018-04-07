@@ -80,7 +80,7 @@ namespace SpecialOfferPrototype.Api.Infrastructure
                         $"Foo-{index}",
                         $"Pamper yourself with Foo {index}",
                         "This special offer is for foo company to receive a couples pampering at our world-class spa resort with a 20% discount",
-                        $"http://foo.org/specialoffer/product/{index}/image?source=hitched",
+                        $"/images/offer.jpg",
                         $"http://foo.org/specialoffer/product/{index}?source=hitched",
                         "SpaServices",
                         "Essex",
